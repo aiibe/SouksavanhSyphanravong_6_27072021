@@ -1,0 +1,7 @@
+.logo {
+  width: 150px;
+
+  @include screen-above(tablet) {
+    width: 200px;
+  }
+}

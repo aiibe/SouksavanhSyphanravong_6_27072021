@@ -1,0 +1,61 @@
+.authors {
+  @extend %contained;
+  display: flex;
+  flex-wrap: wrap;
+
+  .author {
+    display: flex;
+    flex-direction: column;
+
+    &__cell {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    &__portrait {
+      margin: 0 auto;
+      width: 200px;
+      height: 200px;
+
+      img {
+        border-radius: 50%;
+      }
+    }
+
+    &__name {
+      margin: 0;
+    }
+
+    &__tagline {
+      margin: 0;
+    }
+
+    &__tags {
+      padding: 0;
+      display: flex;
+      justify-content: center;
+    }
+
+    @include screen-above(mobile) {
+      flex: 1 0 33.333%;
+
+      &:nth-child(3n + 1) {
+        .author__cell {
+          align-self: flex-start;
+        }
+      }
+
+      &:nth-child(3n-1) {
+        .author__cell {
+          align-self: center;
+        }
+      }
+
+      &:nth-child(3n) {
+        .author__cell {
+          align-self: flex-end;
+        }
+      }
+    }
+  }
+}
