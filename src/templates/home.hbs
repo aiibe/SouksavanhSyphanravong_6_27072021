@@ -7,6 +7,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{{ title }}</title>
   <link rel="stylesheet" href="./css/style.css">
+  <script src="./js/main.js" defer async></script>
 </head>
 
 <body>
@@ -20,8 +21,13 @@
       <li class="tag">#{{name}}</li>
       {{/each}}
     </ul>
+    <div class="scroller">
+      <a href="#main" class="scroller__text">
+        Passer au contenu
+      </a>
+    </div>
   </header>
-  <main>
+  <main id='main'>
     <section class="authors">
       {{#each photographers}}
       <article class="author">
@@ -33,13 +39,14 @@
             <h2 class="author__name">{{name}}</h2>
           </a>
           <div class="author__info">
-            <p class="author__location"><span>{{city}}</span>, <span>{{country}}</span></p>
+            <p class="author__location">{{city}}, {{country}}</p>
             <p class="author__tagline">{{tagline}}</>
+            <p class="author__price">{{price}}€/jour</p>
           </div>
           <ul class="tags author__tags">
             {{#each tags}}
-            <li class="tag author__tag">
-              <a href="">#{{this}}</a>
+            <li>
+              <a href="" class="tag author__tag">#{{this}}</a>
             </li>
             {{/each}}
           </ul>

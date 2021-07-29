@@ -1,0 +1,22 @@
+.scroller {
+  position: fixed;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 999;
+  display: none;
+
+  &__text {
+    text-decoration: none;
+    color: initial;
+    background-color: #db8876;
+    padding: 3px 8px;
+    font-weight: 700;
+    font-size: 18px;
+    border-radius: 5px;
+
+    &:hover {
+      opacity: 0.9;
+    }
+  }
+}
