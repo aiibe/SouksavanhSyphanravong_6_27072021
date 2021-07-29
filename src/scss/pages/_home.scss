@@ -76,6 +76,11 @@
       flex-wrap: wrap;
       justify-content: center;
       align-items: center;
+
+      li {
+        display: flex;
+        margin: 0 8px 8px 0;
+      }
     }
 
     @include screen-above(mobile) {
