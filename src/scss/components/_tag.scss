@@ -9,4 +9,10 @@
   margin: 3px 5px 3px 0;
   color: $color-primary;
   font-weight: 500;
+
+  &:hover {
+    background-color: $color-secondary;
+    border-color: transparent;
+    color: white;
+  }
 }
