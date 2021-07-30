@@ -8,7 +8,7 @@
   <title>{{ title }}</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
-  <script src="./js/main.js" defer async></script>
+  <script src="./js/main.js" type="module" defer async></script>
 </head>
 
 <body>
@@ -18,10 +18,10 @@
         <img class="logo" src="./images/logo.png" alt="Fisheye Home page">
       </a>
       <nav>
-        <ul class="tags" aria-label="photographer categories">
+        <ul class="tags nav__tags" aria-label="photographer categories">
           {{#each tags}}
           <li>
-            <a href="" class="tag" aria-label="{{concat 'Tag ' name}}">#{{name}}</a>
+            <a href="{{name}}" class="tag nav__tag" aria-label="{{concat 'Tag ' name}}">#{{name}}</a>
           </li>
           {{/each}}
         </ul>
