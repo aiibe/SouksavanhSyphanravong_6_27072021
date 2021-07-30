@@ -57,12 +57,13 @@ async function filterAuthors() {
   // Wait for data
   await loadData("api/fisheyeData.json");
 
-  // Render new author list
+  // Filter authors by tags matched
   const selected = activeTags.reduce((group, tag) => {
     const hasTag = cacheData.filter((author) => author.tags.includes(tag));
     return [...new Set([...group, ...hasTag])];
   }, []);
 
+  // Render new author list
   selected.forEach((author) => {
     component = renderAuthor(author);
     authorsList.insertAdjacentHTML("beforeend", component);

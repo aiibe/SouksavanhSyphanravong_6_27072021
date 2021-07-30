@@ -4,5 +4,6 @@ main {
   @include screen-above(mobile) {
     position: absolute;
     z-index: -1;
+    width: 100%;
   }
 }

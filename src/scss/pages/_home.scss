@@ -17,8 +17,8 @@
 
   &__list {
     @include screen-above(mobile) {
-      display: flex;
-      flex-wrap: wrap;
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
       margin-top: 40px;
     }
   }
