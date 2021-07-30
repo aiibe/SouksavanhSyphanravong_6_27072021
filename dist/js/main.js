@@ -60,7 +60,7 @@ async function filterAuthors() {
   // Render new author list
   const selected = activeTags.reduce((group, tag) => {
     const hasTag = cacheData.filter((author) => author.tags.includes(tag));
-    return [...new Set(group.concat(hasTag))];
+    return [...new Set([...group, ...hasTag])];
   }, []);
 
   selected.forEach((author) => {
@@ -83,7 +83,7 @@ function renderAuthor({ name, portrait, city, country, tagline, price, tags }) {
   return `
   <article class="author">
   <div class="author__cell">
-    <a href="${name}" class="author__link" aria-label="${name}">
+    <a href="authors/${name}" class="author__link" aria-label="${name}">
       <div class="author__portrait">
         <img src="./images/authors/${portrait}" alt="${name}">
       </div>
