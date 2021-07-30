@@ -3,7 +3,9 @@ const scroller = document.querySelector(".scroller");
 const scrollerButton = document.querySelector(".scroller__text");
 window.onscroll = () => {
   let top = document.documentElement.scrollTop;
-  scroller.style.display = top === 0 ? "none" : "block";
+  if (top === 0) return (scroller.style.display = "none");
+  if (top > 0 && scroller.style.display !== "block")
+    return (scroller.style.display = "block");
 };
 
 scrollerButton.addEventListener("click", (event) => {
