@@ -86,7 +86,7 @@ function renderAuthor({ name, portrait, city, country, tagline, price, tags }) {
   <div class="author__cell">
     <a href="authors/${name}" class="author__link" aria-label="${name}">
       <div class="author__portrait">
-        <img src="./images/authors/${portrait}" alt="${name}">
+        <img src="./images/authors/${portrait}.html" alt="${name}">
       </div>
       <h2 class="author__name">${name}</h2>
     </a>
