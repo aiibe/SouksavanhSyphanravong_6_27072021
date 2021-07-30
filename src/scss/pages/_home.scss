@@ -104,8 +104,6 @@
     }
 
     @include screen-above(mobile) {
-      flex: 1 0 33.333%;
-
       &:nth-child(3n + 1) {
         .author__cell {
           align-self: flex-start;
