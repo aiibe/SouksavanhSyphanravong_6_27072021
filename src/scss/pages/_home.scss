@@ -1,7 +1,27 @@
 .authors {
-  @extend %contained;
-  display: flex;
-  flex-direction: column;
+  &__title {
+    position: absolute;
+    top: 0;
+    right: 20px;
+    color: $color-primary;
+    font-weight: 400;
+    font-size: 14px;
+
+    @include screen-above(tablet) {
+      position: initial;
+      font-size: 36px;
+      align-self: flex-end;
+      margin: 15px 0;
+    }
+  }
+
+  &__list {
+    @include screen-above(mobile) {
+      display: flex;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+  }
 
   .author {
     display: flex;
@@ -107,7 +127,7 @@
   }
 
   @include screen-above(mobile) {
-    flex-direction: row;
-    flex-wrap: wrap;
+    display: flex;
+    flex-direction: column;
   }
 }

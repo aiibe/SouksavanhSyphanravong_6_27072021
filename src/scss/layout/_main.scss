@@ -1,3 +1,8 @@
 main {
-  @extend %contained;
+  flex-grow: 1;
+
+  @include screen-above(mobile) {
+    position: absolute;
+    z-index: -1;
+  }
 }

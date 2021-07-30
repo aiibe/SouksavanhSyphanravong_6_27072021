@@ -1,0 +1,7 @@
+#app {
+  @extend %contained;
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  margin-top: 40px;
+}

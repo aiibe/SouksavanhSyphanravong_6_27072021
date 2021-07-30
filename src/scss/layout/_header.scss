@@ -1,21 +1,9 @@
 header {
-  @extend %contained;
   display: flex;
   justify-content: space-between;
   align-items: center;
   flex-wrap: wrap;
-  padding: 40px 20px 0 20px;
-  position: relative;
-
-  .title {
-    color: $color-primary;
-    font-weight: 400;
-    font-size: 14px;
-    @include screen-above(tablet) {
-      order: 3;
-      font-size: 36px;
-    }
-  }
+  padding: 0 20px;
 
   .tags {
     padding: 0;
@@ -29,11 +17,6 @@ header {
     li {
       display: flex;
       margin: 0 8px 8px 0;
-    }
-
-    @include screen-above(tablet) {
-      order: 2;
-      flex: initial;
     }
   }
 }
