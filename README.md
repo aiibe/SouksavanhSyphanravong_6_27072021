@@ -14,3 +14,7 @@ When templates (.hbs) have been edited, run `npm run compile` to regenerate html
 #### Warning
 
 ⚠️ DO NOT modify html and css files in `/dist` directory, except for javascript files.
+
+### GitHub Pages
+
+To publish any changes and host via GitHub use `git subtree push --prefix dist origin gh-pages`
