@@ -61,6 +61,6 @@ photographers.forEach((author) =>
     outputDir: `${outputDir}/authors`,
     outputName: `${author.name.toLowerCase().replace(" ", "-")}.html`,
     template: `${templateDir}/page.hbs`,
-    data: { ...author },
+    data: { ...author, title: "Fisheye" },
   })
 );
