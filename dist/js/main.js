@@ -40,10 +40,18 @@ tags.forEach((tag) => {
 // Filter by tags and render new author list
 async function filterAuthors() {
   let authorsList = document.querySelector(".authors__list");
+  let component;
 
   // Clear up author list children
   while (authorsList.firstChild) {
     authorsList.removeChild(authorsList.lastChild);
+  }
+
+  if (cacheData && activeTags.length == 0) {
+    return cacheData.forEach((author) => {
+      component = renderAuthor(author);
+      authorsList.insertAdjacentHTML("beforeend", component);
+    });
   }
 
   // Wait for data
@@ -56,7 +64,7 @@ async function filterAuthors() {
   }, []);
 
   selected.forEach((author) => {
-    const component = renderAuthor(author);
+    component = renderAuthor(author);
     authorsList.insertAdjacentHTML("beforeend", component);
   });
 }
@@ -87,7 +95,7 @@ function renderAuthor({ name, portrait, city, country, tagline, price, tags }) {
       <p class="author__price">${price}€/jour</p>
     </div>
     <ul class="tags author__tags">
-      ${tags.forEach((tag) => renderTag(tag))}
+      ${tags.map((tag) => renderTag(tag))}
     </ul>
   </div>
 </article>
