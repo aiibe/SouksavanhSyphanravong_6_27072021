@@ -23,14 +23,4 @@ header {
       margin: 0 8px 8px 0;
     }
   }
-
-  .nav {
-    &__tag {
-      &--active {
-        background-color: $color-secondary;
-        border-color: transparent;
-        color: white;
-      }
-    }
-  }
 }

@@ -8,6 +8,8 @@
   <title>Fisheye</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
+  <script src="./js/refresh.js" type="module" defer async></script>
+  <script src="./js/tags.js" type="module" defer async></script>
   <script src="./js/main.js" type="module" defer async></script>
 </head>
 
@@ -19,30 +21,6 @@
       </a>
       <nav>
         <ul class="tags nav__tags" aria-label="photographer categories">
-          <li>
-            <a href="Portrait" class="tag nav__tag" aria-label="Tag Portrait">#Portrait</a>
-          </li>
-          <li>
-            <a href="Art" class="tag nav__tag" aria-label="Tag Art">#Art</a>
-          </li>
-          <li>
-            <a href="Fashion" class="tag nav__tag" aria-label="Tag Fashion">#Fashion</a>
-          </li>
-          <li>
-            <a href="Architecture" class="tag nav__tag" aria-label="Tag Architecture">#Architecture</a>
-          </li>
-          <li>
-            <a href="Travel" class="tag nav__tag" aria-label="Tag Travel">#Travel</a>
-          </li>
-          <li>
-            <a href="Sports" class="tag nav__tag" aria-label="Tag Sports">#Sports</a>
-          </li>
-          <li>
-            <a href="Animals" class="tag nav__tag" aria-label="Tag Animals">#Animals</a>
-          </li>
-          <li>
-            <a href="Events" class="tag nav__tag" aria-label="Tag Events">#Events</a>
-          </li>
         </ul>
       </nav>
       <div class="scroller">
@@ -55,159 +33,6 @@
       <section class="authors">
         <h1 class="authors__title">Nos photographes</h1>
         <div class="authors__list">
-          <article class="author">
-            <div class="author__cell">
-              <a href="authors/mimi-keel.html" class="author__link" aria-label="Mimi Keel">
-                <div class="author__portrait">
-                  <img src=./images/authors/MimiKeel.jpg alt="">
-                </div>
-                <h2 class="author__name">Mimi Keel</h2>
-              </a>
-              <div class="author__info">
-                <p class="author__location">London, UK</p>
-                <p class="author__tagline">Voir le beau dans le quotidien</>
-                <p class="author__price">400€/jour</p>
-              </div>
-              <ul class="tags author__tags">
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag portrait">#portrait</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag events">#events</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag travel">#travel</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag animals">#animals</a>
-                </li>
-              </ul>
-            </div>
-          </article>
-          <article class="author">
-            <div class="author__cell">
-              <a href="authors/ellie-rose-wilkens.html" class="author__link" aria-label="Ellie-Rose Wilkens">
-                <div class="author__portrait">
-                  <img src=./images/authors/EllieRoseWilkens.jpg alt="">
-                </div>
-                <h2 class="author__name">Ellie-Rose Wilkens</h2>
-              </a>
-              <div class="author__info">
-                <p class="author__location">Paris, France</p>
-                <p class="author__tagline">Capturer des compositions complexes</>
-                <p class="author__price">250€/jour</p>
-              </div>
-              <ul class="tags author__tags">
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag sports">#sports</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag architecture">#architecture</a>
-                </li>
-              </ul>
-            </div>
-          </article>
-          <article class="author">
-            <div class="author__cell">
-              <a href="authors/tracy-galindo.html" class="author__link" aria-label="Tracy Galindo">
-                <div class="author__portrait">
-                  <img src=./images/authors/TracyGalindo.jpg alt="">
-                </div>
-                <h2 class="author__name">Tracy Galindo</h2>
-              </a>
-              <div class="author__info">
-                <p class="author__location">Montreal, Canada</p>
-                <p class="author__tagline">Photographe freelance</>
-                <p class="author__price">500€/jour</p>
-              </div>
-              <ul class="tags author__tags">
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag art">#art</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag fashion">#fashion</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag events">#events</a>
-                </li>
-              </ul>
-            </div>
-          </article>
-          <article class="author">
-            <div class="author__cell">
-              <a href="authors/nabeel-bradford.html" class="author__link" aria-label="Nabeel Bradford">
-                <div class="author__portrait">
-                  <img src=./images/authors/NabeelBradford.jpg alt="">
-                </div>
-                <h2 class="author__name">Nabeel Bradford</h2>
-              </a>
-              <div class="author__info">
-                <p class="author__location">Mexico City, Mexico</p>
-                <p class="author__tagline">Toujours aller de l&#x27;avant</>
-                <p class="author__price">350€/jour</p>
-              </div>
-              <ul class="tags author__tags">
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag travel">#travel</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag portrait">#portrait</a>
-                </li>
-              </ul>
-            </div>
-          </article>
-          <article class="author">
-            <div class="author__cell">
-              <a href="authors/rhode-dubois.html" class="author__link" aria-label="Rhode Dubois">
-                <div class="author__portrait">
-                  <img src=./images/authors/RhodeDubois.jpg alt="">
-                </div>
-                <h2 class="author__name">Rhode Dubois</h2>
-              </a>
-              <div class="author__info">
-                <p class="author__location">Barcelona, Spain</p>
-                <p class="author__tagline">Je crée des souvenirs</>
-                <p class="author__price">275€/jour</p>
-              </div>
-              <ul class="tags author__tags">
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag sport">#sport</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag fashion">#fashion</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag events">#events</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag animals">#animals</a>
-                </li>
-              </ul>
-            </div>
-          </article>
-          <article class="author">
-            <div class="author__cell">
-              <a href="authors/marcel-nikolic.html" class="author__link" aria-label="Marcel Nikolic">
-                <div class="author__portrait">
-                  <img src=./images/authors/MarcelNikolic.jpg alt="">
-                </div>
-                <h2 class="author__name">Marcel Nikolic</h2>
-              </a>
-              <div class="author__info">
-                <p class="author__location">Berlin, Germany</p>
-                <p class="author__tagline">Toujours à la recherche de LA photo</>
-                <p class="author__price">300€/jour</p>
-              </div>
-              <ul class="tags author__tags">
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag travel">#travel</a>
-                </li>
-                <li>
-                  <a href="" class="tag author__tag" aria-label="Tag architecture">#architecture</a>
-                </li>
-              </ul>
-            </div>
-          </article>
         </div>
       </section>
     </main>

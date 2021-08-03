@@ -16,100 +16,25 @@ scrollerButton.addEventListener("click", (event) => {
 });
 
 // Tags
-let cacheData = null;
-let activeTags = [];
-const tags = document.querySelectorAll(".nav__tag");
-tags.forEach((tag) => {
-  tag.addEventListener("click", (event) => {
-    event.preventDefault();
-    const classes = event.target.classList;
-    const href = event.target.getAttribute("href").toLowerCase();
-    const active = classes.contains("nav__tag--active");
-    if (!active) {
-      classes.add("nav__tag--active");
-      activeTags = [...activeTags, href];
-    } else {
-      classes.remove("nav__tag--active");
-      activeTags = activeTags.filter((tag) => tag !== href);
-    }
 
-    filterAuthors();
-  });
-});
+import { State, NavTags, AuthorList } from "./tags.js";
 
-// Filter by tags and render new author list
-async function filterAuthors() {
-  let authorsList = document.querySelector(".authors__list");
-  let component;
+const store = new State();
+const filter = new NavTags(".nav__tags", store);
+const authorList = new AuthorList(".authors__list", store);
 
-  // Clear up author list children
-  while (authorsList.firstChild) {
-    authorsList.removeChild(authorsList.lastChild);
-  }
+// Define components that re-render on state change
+store.subscribers([authorList, filter]);
 
-  if (cacheData && activeTags.length == 0) {
-    return cacheData.forEach((author) => {
-      component = renderAuthor(author);
-      authorsList.insertAdjacentHTML("beforeend", component);
-    });
-  }
-
-  // Wait for data
-  await loadData("api/fisheyeData.json");
-
-  // Filter authors by tags matched
-  const selected = activeTags.reduce((group, tag) => {
-    const hasTag = cacheData.filter((author) => author.tags.includes(tag));
-    return [...new Set([...group, ...hasTag])];
-  }, []);
-
-  // Render new author list
-  selected.forEach((author) => {
-    component = renderAuthor(author);
-    authorsList.insertAdjacentHTML("beforeend", component);
-  });
-}
-
-// Call API once and cache data until refresh page
+// Load data to  from API
 async function loadData(url) {
+  const { cacheData } = store;
   if (!cacheData) {
     const res = await fetch(url);
     const { photographers } = await res.json();
-    cacheData = [...photographers];
+    store.set("cacheData", [...photographers]);
   }
 }
 
-// Author component
-function renderAuthor({ name, portrait, city, country, tagline, price, tags }) {
-  const slug = name.toLowerCase().replace(" ", "-");
-
-  return `
-  <article class="author">
-  <div class="author__cell">
-    <a href="authors/${slug}.html" class="author__link" aria-label="${name}">
-      <div class="author__portrait">
-        <img src="./images/authors/${portrait}" alt="${name}">
-      </div>
-      <h2 class="author__name">${name}</h2>
-    </a>
-    <div class="author__info">
-      <p class="author__location">${city}, ${country}</p>
-      <p class="author__tagline">${tagline}</>
-      <p class="author__price">${price}€/jour</p>
-    </div>
-    <ul class="tags author__tags">
-      ${tags.map((tag) => renderTag(tag))}
-    </ul>
-  </div>
-</article>
-  `;
-}
-
-// render
-function renderTag(tag) {
-  return `
-      <li>
-        <a href="" class="tag author__tag" aria-label="Tag ${tag}}}">#${tag}</a>
-      </li>
-  `;
-}
+// Load data from API
+loadData("api/fisheyeData.json");

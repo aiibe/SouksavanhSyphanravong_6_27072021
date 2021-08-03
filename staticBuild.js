@@ -13,11 +13,6 @@ function createPage({ outputName, template, outputDir, data }) {
   fs.writeFileSync(outputFile, content);
 }
 
-// Utils
-function slug(name) {
-  return name.toLowerCase().replace(" ", "-");
-}
-
 // Usage
 
 // Paths
@@ -27,13 +22,6 @@ const outputDir = "./dist";
 // Load data
 const { photographers } = require("./src/fisheyeData.json");
 
-// Handlebars helpers
-Handlebars.registerHelper("concat", (stringA, stringB) => stringA + stringB);
-Handlebars.registerHelper(
-  "sluggy",
-  (name, root) => root + slug(name) + ".html"
-);
-
 // Create index.html
 createPage({
   outputName: "index.html",
@@ -41,17 +29,6 @@ createPage({
   template: `${templateDir}/home.hbs`,
   data: {
     title: "Fisheye",
-    tags: [
-      { name: "Portrait" },
-      { name: "Art" },
-      { name: "Fashion" },
-      { name: "Architecture" },
-      { name: "Travel" },
-      { name: "Sports" },
-      { name: "Animals" },
-      { name: "Events" },
-    ],
-    photographers,
   },
 });
 

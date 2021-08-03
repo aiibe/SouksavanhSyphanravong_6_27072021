@@ -8,6 +8,8 @@
   <title>{{ title }}</title>
   <link rel="stylesheet" href="./css/style.css">
   <link rel="shortcut icon" href="./images/favicon.png" type="image/png">
+  <script src="./js/refresh.js" type="module" defer async></script>
+  <script src="./js/tags.js" type="module" defer async></script>
   <script src="./js/main.js" type="module" defer async></script>
 </head>
 
@@ -19,11 +21,6 @@
       </a>
       <nav>
         <ul class="tags nav__tags" aria-label="photographer categories">
-          {{#each tags}}
-          <li>
-            <a href="{{name}}" class="tag nav__tag" aria-label="{{concat 'Tag ' name}}">#{{name}}</a>
-          </li>
-          {{/each}}
         </ul>
       </nav>
       <div class="scroller">
@@ -36,30 +33,6 @@
       <section class="authors">
         <h1 class="authors__title">Nos photographes</h1>
         <div class="authors__list">
-          {{#each photographers}}
-          <article class="author">
-            <div class="author__cell">
-              <a href="{{sluggy name 'authors/'}}" class="author__link" aria-label="{{name}}">
-                <div class="author__portrait">
-                  <img src={{concat './images/authors/' portrait}} alt="">
-                </div>
-                <h2 class="author__name">{{name}}</h2>
-              </a>
-              <div class="author__info">
-                <p class="author__location">{{city}}, {{country}}</p>
-                <p class="author__tagline">{{tagline}}</>
-                <p class="author__price">{{price}}€/jour</p>
-              </div>
-              <ul class="tags author__tags">
-                {{#each tags}}
-                <li>
-                  <a href="" class="tag author__tag" aria-label="{{concat 'Tag ' this}}">#{{this}}</a>
-                </li>
-                {{/each}}
-              </ul>
-            </div>
-          </article>
-          {{/each}}
         </div>
       </section>
     </main>
