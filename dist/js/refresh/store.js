@@ -6,7 +6,9 @@ export default class Store {
 
   // Private methods
   #refresh() {
-    this.subscribers.forEach((sub) => sub.refresh());
+    this.subscribers.forEach((sub) => {
+      sub.type === "component" && sub.refresh();
+    });
   }
 
   // Public methods
@@ -28,10 +30,10 @@ export default class Store {
     return this.state;
   }
 
-  update(ref, callback) {
-    if (callback && ref) {
-      if (this.state[ref]) {
-        this.state[ref] = callback(this.state[ref]);
+  update(key, callback) {
+    if (callback && key) {
+      if (this.state[key]) {
+        this.state[key] = callback(this.state[key]);
         this.#refresh();
       }
     }

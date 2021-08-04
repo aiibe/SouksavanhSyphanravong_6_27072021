@@ -1,12 +1,6 @@
-import { Store, Renderer } from "./refresh.js";
-
-class State extends Store {
-  constructor() {
-    super();
-    this.media = [];
-    this.photographers = [];
-  }
-}
+// import { Store, Renderer } from "./refresh.js";
+import store from "./authorStore.js";
+import Component from "./refresh/component.js";
 
 function renderMeta({ title, likes }) {
   return `
@@ -22,14 +16,14 @@ function renderMeta({ title, likes }) {
 
 function renderImage(image) {
   return `
-  <img class="gallery__image" src="../images/${image}" />
+  <img class="gallery__image" src="../images/gallery/min/${image}" />
 `;
 }
 
 function renderVideo(video) {
   return `
   <video class="gallery__video">
-    <source src="../images/${video}" type="video/mp4">
+    <source src="../images/gallery/raw/${video}" type="video/mp4">
   </video>
 `;
 }
@@ -45,30 +39,28 @@ function renderMedia({ image, video, title, likes }) {
   `;
 }
 
-class Gallery extends Renderer {
-  constructor(selector, state) {
-    super(selector, state);
+class Gallery extends Component {
+  constructor(selector) {
+    super(selector);
   }
 
   render() {
-    const { media } = this.state;
-    media.forEach((m) => {
-      let component = renderMedia(m);
-      this.selector.insertAdjacentHTML("beforeend", component);
-    });
+    const { media } = store.get();
+    const id = this.selector.dataset.author;
+    return media
+      .filter(({ photographerId }) => photographerId == id)
+      .map((m) => renderMedia(m));
   }
 }
 
-const store = new State();
-const gallery = new Gallery(".gallery__grid", store);
-
-store.subscribers([gallery]);
+const gallery = new Gallery(".gallery__grid");
+store.subscribe(gallery);
 
 async function loadData() {
   const res = await fetch("../api/fisheyeData.json");
   const { media, photographers } = await res.json();
-  store.set("media", media);
-  store.set("photographers", photographers);
+  store.set("media", [...media]);
+  store.set("photographers", [...photographers]);
 }
 
 loadData();

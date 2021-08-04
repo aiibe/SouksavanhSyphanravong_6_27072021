@@ -8,7 +8,9 @@
   <title>Fisheye - Mimi Keel</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="shortcut icon" href="../images/favicon.png" type="image/png">
-  <script src="../js/refresh.js" type="module" defer async></script>
+  <script src="../js/refresh/component.js" type="module" defer async></script>
+  <script src="../js/refresh/store.js" type="module" defer async></script>
+  <script src="../js/authorStore.js" type="module" defer async></script>
   <script src="../js/profile.js" type="module" defer async></script>
 </head>
 
@@ -27,11 +29,11 @@
     <main>
       <section class="profile">
         <div class="profile__portrait">
-          <img src="" alt="">
+          <img src="../images/authors/MimiKeel.jpg" alt="">
         </div>
       </section>
       <section class="gallery">
-        <div class="grid gallery__grid"></div>
+        <div class="grid gallery__grid" data-author=243></div>
       </section>
     </main>
   </div>

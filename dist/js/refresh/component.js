@@ -1,5 +1,6 @@
 export default class Component {
   constructor(selector) {
+    this.type = "component";
     this.selector = document.querySelector(selector);
     this.delegateEvent();
   }

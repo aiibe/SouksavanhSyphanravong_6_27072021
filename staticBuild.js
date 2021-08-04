@@ -38,6 +38,11 @@ photographers.forEach((author) =>
     outputDir: `${outputDir}/authors`,
     outputName: `${author.name.toLowerCase().replace(" ", "-")}.html`,
     template: `${templateDir}/page.hbs`,
-    data: { ...author, title: "Fisheye", media },
+    data: {
+      ...author,
+      title: "Fisheye",
+      media,
+      portrait: `../images/authors/${author.portrait}`,
+    },
   })
 );
