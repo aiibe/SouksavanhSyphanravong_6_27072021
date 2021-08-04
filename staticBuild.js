@@ -20,7 +20,7 @@ const templateDir = "./src/templates";
 const outputDir = "./dist";
 
 // Load data
-const { photographers } = require("./src/fisheyeData.json");
+const { photographers, media } = require("./src/fisheyeData.json");
 
 // Create index.html
 createPage({
@@ -38,6 +38,6 @@ photographers.forEach((author) =>
     outputDir: `${outputDir}/authors`,
     outputName: `${author.name.toLowerCase().replace(" ", "-")}.html`,
     template: `${templateDir}/page.hbs`,
-    data: { ...author, title: "Fisheye" },
+    data: { ...author, title: "Fisheye", media },
   })
 );

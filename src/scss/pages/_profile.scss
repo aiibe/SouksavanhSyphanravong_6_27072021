@@ -1,0 +1,75 @@
+.profile {
+  &__portrait {
+    margin: 0 auto;
+    width: 200px;
+    height: 200px;
+    margin-bottom: 10px;
+
+    img {
+      box-shadow: 0px 4px 12px #c4c4c4;
+      border-radius: 50%;
+      transition: transform 500ms ease;
+    }
+  }
+}
+
+.gallery {
+  padding: 0 20px;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: 1fr;
+
+    @include screen-above(mobile) {
+      grid-template-columns: 1fr 1fr 1fr;
+    }
+  }
+
+  &__cell {
+    margin-bottom: 20px;
+  }
+
+  &__media {
+    height: 180px;
+    border-radius: 5px;
+    overflow: hidden;
+    margin-bottom: 10px;
+  }
+
+  &__video {
+    height: 180px;
+    width: 100%;
+    object-fit: cover;
+  }
+
+  &__meta {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: $color-primary;
+  }
+
+  &__media-title {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+  }
+
+  &__likes {
+    font-weight: 500;
+    margin: 0;
+  }
+
+  &__like-icon {
+    height: 15px;
+    fill: $color-primary;
+    vertical-align: middle;
+    margin-left: 3px;
+  }
+
+  @include screen-above(mobile) {
+    &__likes {
+      font-size: 24px;
+    }
+  }
+}

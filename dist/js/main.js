@@ -1,40 +1,23 @@
-// Scroller
-const scroller = document.querySelector(".scroller");
-const scrollerButton = document.querySelector(".scroller__text");
-window.onscroll = () => {
-  let top = document.documentElement.scrollTop;
-  if (top === 0) return (scroller.style.display = "none");
-  if (top > 0 && scroller.style.display !== "block")
-    return (scroller.style.display = "block");
-};
+import NavTags from "./components/NavTags.js";
+import AuthorList from "./components/AuthorList.js";
+import store from "./tagStore.js";
 
-scrollerButton.addEventListener("click", (event) => {
-  event.preventDefault();
-  const href = event.target.getAttribute("href");
-  const target = document.querySelector(href);
-  target.scrollIntoView({ behavior: "smooth" });
-});
+// Initialize components
+const filter = new NavTags(".nav__tags");
+const authorList = new AuthorList(".authors__list");
 
-// Tags
+// Subscribe dependant components
+store.subscribe(filter);
+store.subscribe(authorList);
 
-import { State, NavTags, AuthorList } from "./tags.js";
-
-const store = new State();
-const filter = new NavTags(".nav__tags", store);
-const authorList = new AuthorList(".authors__list", store);
-
-// Define components that re-render on state change
-store.subscribers([authorList, filter]);
-
-// Load data to  from API
+// Load fisheyeData and update store
 async function loadData(url) {
-  const { cacheData } = store;
-  if (!cacheData) {
+  const { photographers } = store;
+  if (!photographers) {
     const res = await fetch(url);
-    const { photographers } = await res.json();
-    store.set("cacheData", [...photographers]);
+    const data = await res.json();
+    store.set("photographers", [...data.photographers]);
   }
 }
-
-// Load data from API
+// Update our store now
 loadData("api/fisheyeData.json");
