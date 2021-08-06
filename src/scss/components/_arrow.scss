@@ -1,0 +1,24 @@
+.arrow-holder {
+  margin-left: 20px;
+  pointer-events: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.arrow {
+  border: solid white;
+  border-width: 0 3px 3px 0;
+  display: inline-block;
+  padding: 3px;
+  margin: 3px;
+  align-self: flex-start;
+
+  &--up {
+    transform: rotate(-135deg);
+  }
+
+  &--down {
+    transform: rotate(45deg);
+  }
+}

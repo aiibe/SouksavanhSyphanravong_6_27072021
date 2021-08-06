@@ -32,10 +32,8 @@ export default class Store {
 
   update(key, callback) {
     if (callback && key) {
-      if (this.state[key]) {
-        this.state[key] = callback(this.state[key]);
-        this.#refresh();
-      }
+      this.state[key] = callback(this.state[key]);
+      this.#refresh();
     }
   }
 }

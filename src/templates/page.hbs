@@ -10,8 +10,10 @@
   <link rel="shortcut icon" href="../images/favicon.png" type="image/png">
   <script src="../js/refresh/component.js" type="module" defer async></script>
   <script src="../js/refresh/store.js" type="module" defer async></script>
-  <script src="../js/authorStore.js" type="module" defer async></script>
-  <script src="../js/profile.js" type="module" defer async></script>
+  <script src="../js/components/Dropdown.js" type="module" defer async></script>
+  <script src="../js/dropdownStore.js" type="module" defer async></script>
+  <script src="../js/mediaStore.js" type="module" defer async></script>
+  <script src="../js/author.js" type="module" defer async></script>
 </head>
 
 <body>
@@ -28,11 +30,31 @@
     </header>
     <main>
       <section class="profile">
-        <div class="profile__portrait">
-          <img src="{{portrait}}" alt="">
+        <div class="profile__block">
+          <div class="profile__info">
+            <h1 class="profile__name">{{ name }}</h1>
+            <p class="profile__location">{{city}}, {{country}}</p>
+            <p class="profile__tagline">{{tagline}}</>
+            <ul class="profile__tags">
+              {{#each tags}}
+              <li>
+                <a href="Tag {{this}}" class="tag profile__tag">#{{ this }}</a>
+              </li>
+              {{/each}}
+            </ul>
+          </div>
+          <div class="profile__portrait">
+            <img src="{{portrait}}" alt="">
+          </div>
         </div>
       </section>
       <section class="gallery">
+        <div class="gallery__filter">
+          <span>Trier par</span>
+          <div class="gallery__filter-box">
+            <ul class="gallery__filter-options" tabindex="-1" role="listbox"></ul>
+          </div>
+        </div>
         <div class="grid gallery__grid" data-author={{id}}></div>
       </section>
     </main>

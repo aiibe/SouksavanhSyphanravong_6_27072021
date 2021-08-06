@@ -10,8 +10,10 @@
   <link rel="shortcut icon" href="../images/favicon.png" type="image/png">
   <script src="../js/refresh/component.js" type="module" defer async></script>
   <script src="../js/refresh/store.js" type="module" defer async></script>
-  <script src="../js/authorStore.js" type="module" defer async></script>
-  <script src="../js/profile.js" type="module" defer async></script>
+  <script src="../js/components/Dropdown.js" type="module" defer async></script>
+  <script src="../js/dropdownStore.js" type="module" defer async></script>
+  <script src="../js/mediaStore.js" type="module" defer async></script>
+  <script src="../js/author.js" type="module" defer async></script>
 </head>
 
 <body>
@@ -28,11 +30,32 @@
     </header>
     <main>
       <section class="profile">
-        <div class="profile__portrait">
-          <img src="../images/authors/MarcelNikolic.jpg" alt="">
+        <div class="profile__block">
+          <div class="profile__info">
+            <h1 class="profile__name">Marcel Nikolic</h1>
+            <p class="profile__location">Berlin, Germany</p>
+            <p class="profile__tagline">Toujours à la recherche de LA photo</>
+            <ul class="profile__tags">
+              <li>
+                <a href="Tag travel" class="tag profile__tag">#travel</a>
+              </li>
+              <li>
+                <a href="Tag architecture" class="tag profile__tag">#architecture</a>
+              </li>
+            </ul>
+          </div>
+          <div class="profile__portrait">
+            <img src="../images/authors/MarcelNikolic.jpg" alt="">
+          </div>
         </div>
       </section>
       <section class="gallery">
+        <div class="gallery__filter">
+          <span>Trier par</span>
+          <div class="gallery__filter-box">
+            <ul class="gallery__filter-options" tabindex="-1" role="listbox"></ul>
+          </div>
+        </div>
         <div class="grid gallery__grid" data-author=195></div>
       </section>
     </main>

@@ -1,6 +1,38 @@
-// import { Store, Renderer } from "./refresh.js";
-import store from "./authorStore.js";
-import Component from "./refresh/component.js";
+import mediaStore from "../mediaStore.js";
+import { isValue } from "../dropdownStore.js";
+import Component from "../refresh/component.js";
+
+class Gallery extends Component {
+  constructor(selector) {
+    super(selector);
+  }
+
+  render() {
+    const { media } = mediaStore.get();
+    const { currentFilter } = isValue.get();
+    const id = this.selector.dataset.author;
+    const authorMedia = media.filter(
+      ({ photographerId }) => photographerId == id
+    );
+
+    switch (currentFilter) {
+      case "POPULAR":
+        return authorMedia
+          .sort((a, b) => b.likes - a.likes)
+          .map((m) => renderMedia(m));
+      case "DATE":
+        return authorMedia
+          .sort((a, b) => new Date(a.date) - new Date(b.date))
+          .map((m) => renderMedia(m));
+      case "TITLE":
+        return authorMedia
+          .sort((a, b) => a.title.localeCompare(b.title))
+          .map((m) => renderMedia(m));
+      default:
+        return [];
+    }
+  }
+}
 
 function renderMeta({ title, likes }) {
   return `
@@ -39,28 +71,4 @@ function renderMedia({ image, video, title, likes }) {
   `;
 }
 
-class Gallery extends Component {
-  constructor(selector) {
-    super(selector);
-  }
-
-  render() {
-    const { media } = store.get();
-    const id = this.selector.dataset.author;
-    return media
-      .filter(({ photographerId }) => photographerId == id)
-      .map((m) => renderMedia(m));
-  }
-}
-
-const gallery = new Gallery(".gallery__grid");
-store.subscribe(gallery);
-
-async function loadData() {
-  const res = await fetch("../api/fisheyeData.json");
-  const { media, photographers } = await res.json();
-  store.set("media", [...media]);
-  store.set("photographers", [...photographers]);
-}
-
-loadData();
+export default Gallery;

@@ -10,8 +10,10 @@
   <link rel="shortcut icon" href="../images/favicon.png" type="image/png">
   <script src="../js/refresh/component.js" type="module" defer async></script>
   <script src="../js/refresh/store.js" type="module" defer async></script>
-  <script src="../js/authorStore.js" type="module" defer async></script>
-  <script src="../js/profile.js" type="module" defer async></script>
+  <script src="../js/components/Dropdown.js" type="module" defer async></script>
+  <script src="../js/dropdownStore.js" type="module" defer async></script>
+  <script src="../js/mediaStore.js" type="module" defer async></script>
+  <script src="../js/author.js" type="module" defer async></script>
 </head>
 
 <body>
@@ -28,11 +30,35 @@
     </header>
     <main>
       <section class="profile">
-        <div class="profile__portrait">
-          <img src="../images/authors/TracyGalindo.jpg" alt="">
+        <div class="profile__block">
+          <div class="profile__info">
+            <h1 class="profile__name">Tracy Galindo</h1>
+            <p class="profile__location">Montreal, Canada</p>
+            <p class="profile__tagline">Photographe freelance</>
+            <ul class="profile__tags">
+              <li>
+                <a href="Tag art" class="tag profile__tag">#art</a>
+              </li>
+              <li>
+                <a href="Tag fashion" class="tag profile__tag">#fashion</a>
+              </li>
+              <li>
+                <a href="Tag events" class="tag profile__tag">#events</a>
+              </li>
+            </ul>
+          </div>
+          <div class="profile__portrait">
+            <img src="../images/authors/TracyGalindo.jpg" alt="">
+          </div>
         </div>
       </section>
       <section class="gallery">
+        <div class="gallery__filter">
+          <span>Trier par</span>
+          <div class="gallery__filter-box">
+            <ul class="gallery__filter-options" tabindex="-1" role="listbox"></ul>
+          </div>
+        </div>
         <div class="grid gallery__grid" data-author=82></div>
       </section>
     </main>
