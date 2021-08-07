@@ -10,16 +10,27 @@ class Dropdown extends Component {
     this.selector.addEventListener("click", (event) => {
       event.preventDefault();
       if (event.target.classList.contains("gallery__filter-option")) {
-        const { show } = isOpen.get();
-        isOpen.update("show", (state) => !state);
-        if (!show) return;
-
-        const { OPTIONS } = isValue.get();
-        const text = event.target.innerText.trim();
-        const selected = Object.keys(OPTIONS).find((k) => OPTIONS[k] === text);
-        isValue.set("currentFilter", selected);
+        this.updateState(event.target);
       }
     });
+
+    this.selector.addEventListener("keypress", (event) => {
+      if (event.keyCode === 13) {
+        this.updateState(event.target);
+        event.preventDefault();
+      }
+    });
+  }
+
+  updateState(target) {
+    const { show } = isOpen.get();
+    isOpen.update("show", (state) => !state);
+    if (!show) return;
+
+    const { OPTIONS } = isValue.get();
+    const text = target.innerText.trim();
+    const selected = Object.keys(OPTIONS).find((k) => OPTIONS[k] === text);
+    isValue.set("currentFilter", selected);
   }
 
   render() {

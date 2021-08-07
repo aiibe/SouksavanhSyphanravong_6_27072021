@@ -100,10 +100,13 @@
       font-size: 24px;
       font-weight: 500;
       padding: 10px 20px;
+    }
 
-      span {
-        display: flex;
-        align-items: center;
+    &__total-likes {
+      &::after {
+        content: "\f004";
+        font-family: "Font Awesome 5 Free";
+        font-weight: 900;
       }
     }
 
@@ -234,8 +237,18 @@
   }
 
   &__likes {
+    font-size: 14px;
     font-weight: 500;
     margin: 0;
+    border: 0;
+    background-color: transparent;
+    color: $color-primary;
+
+    &::after {
+      content: "\f004";
+      font-family: "Font Awesome 5 Free";
+      font-weight: 900;
+    }
   }
 
   &__like-icon {
@@ -383,8 +396,12 @@
     border-radius: 5px;
     overflow: hidden;
 
+    img {
+      object-fit: contain;
+    }
+
     @include screen-above(mobile) {
-      height: 60vh;
+      height: 80vh;
     }
   }
 

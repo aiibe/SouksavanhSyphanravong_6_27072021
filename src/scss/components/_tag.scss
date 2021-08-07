@@ -15,7 +15,8 @@
     color: white;
   }
 
-  &:hover {
+  &:hover,
+  &:focus {
     background-color: $color-secondary;
     border-color: transparent;
     color: white;

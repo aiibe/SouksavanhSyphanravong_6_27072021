@@ -8,6 +8,9 @@
   <title>{{title}} - {{ name }}</title>
   <link rel="stylesheet" href="../css/style.css">
   <link rel="shortcut icon" href="../images/favicon.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    integrity="sha512-1ycn6IcaQQ40/MKBW2W4Rhis/DbILU74C1vSrLJxCq57o941Ym01SwNsOMqvEBFlcgUa6xLiPY/NS5R+E6ztJQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <script src="../js/refresh/component.js" type="module" defer async></script>
   <script src="../js/refresh/store.js" type="module" defer async></script>
   <script src="../js/components/Dropdown.js" type="module" defer async></script>
@@ -56,11 +59,11 @@
           </div>
         </div>
       </section>
-      <section class="gallery">
+      <section class="gallery" tabindex="-1">
         <div class="gallery__filter">
           <span>Trier par</span>
           <div class="gallery__filter-box">
-            <ul class="gallery__filter-options" tabindex="-1" role="listbox" aria-haspopup="listbox"></ul>
+            <ul class="gallery__filter-options" tabindex="0" role="listbox" aria-haspopup="listbox"></ul>
           </div>
         </div>
         <div class="grid gallery__grid" data-author={{id}}></div>
