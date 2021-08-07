@@ -1,4 +1,4 @@
-import store from "./tagStore.js";
+import store from "./stores/tagStore.js";
 
 function bindClick(self) {
   self.selector.addEventListener("click", (event) => {

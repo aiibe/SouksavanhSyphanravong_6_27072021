@@ -1,5 +1,5 @@
 import Component from "../refresh/component.js";
-import modalStore from "../modalStore.js";
+import modalStore from "../stores/modalStore.js";
 
 class Contact extends Component {
   constructor(selector) {

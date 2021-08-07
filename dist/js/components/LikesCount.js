@@ -1,5 +1,5 @@
 import Component from "../refresh/component.js";
-import mediaStore from "../mediaStore.js";
+import mediaStore from "../stores/mediaStore.js";
 
 class LikesCount extends Component {
   constructor(selector) {

@@ -1,4 +1,4 @@
-import Store from "./refresh/store.js";
+import Store from "../refresh/store.js";
 
 // Enum
 const options = {

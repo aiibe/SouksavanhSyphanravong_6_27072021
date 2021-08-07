@@ -1,6 +1,6 @@
 import Component from "../refresh/component.js";
 import { bindClick, slug } from "../helpers.js";
-import store from "../tagStore.js";
+import store from "../stores/tagStore.js";
 
 class AuthorList extends Component {
   constructor(selector) {

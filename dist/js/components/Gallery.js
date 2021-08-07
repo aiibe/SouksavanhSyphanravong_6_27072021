@@ -1,6 +1,6 @@
-import mediaStore from "../mediaStore.js";
-import { isValue } from "../dropdownStore.js";
-import lightboxStore from "../lightboxStore.js";
+import mediaStore from "../stores/mediaStore.js";
+import { isValue } from "../stores/dropdownStore.js";
+import lightboxStore from "../stores/lightboxStore.js";
 import Component from "../refresh/component.js";
 
 class Gallery extends Component {

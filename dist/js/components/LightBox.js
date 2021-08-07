@@ -1,5 +1,5 @@
 import Component from "../refresh/component.js";
-import lightboxStore from "../lightboxStore.js";
+import lightboxStore from "../stores/lightboxStore.js";
 
 class LightBox extends Component {
   constructor(selector) {

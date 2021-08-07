@@ -1,6 +1,6 @@
 import Component from "../refresh/component.js";
 import { bindClick } from "../helpers.js";
-import store from "../tagStore.js";
+import store from "../stores/tagStore.js";
 
 class NavTags extends Component {
   constructor(selector) {

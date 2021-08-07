@@ -1,4 +1,4 @@
-import Store from "./refresh/store.js";
+import Store from "../refresh/store.js";
 
 const lightboxStore = new Store({ show: false, media: [], currentIndex: 0 });
 

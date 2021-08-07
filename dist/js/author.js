@@ -1,7 +1,7 @@
-import { isOpen, isValue } from "./dropdownStore.js";
-import mediaStore from "./mediaStore.js";
-import modalStore from "./modalStore.js";
-import lightboxStore from "./lightboxStore.js";
+import { isOpen, isValue } from "./stores/dropdownStore.js";
+import mediaStore from "./stores/mediaStore.js";
+import modalStore from "./stores/modalStore.js";
+import lightboxStore from "./stores/lightboxStore.js";
 
 import Gallery from "./components/Gallery.js";
 import Dropdown from "./components/Dropdown.js";
@@ -37,6 +37,6 @@ async function loadData() {
 loadData();
 
 const contactBtn = document.querySelector(".profile__contact");
-contactBtn.addEventListener("click", (event) => {
+contactBtn.addEventListener("click", () => {
   modalStore.set("show", true);
 });

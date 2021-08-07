@@ -1,5 +1,5 @@
 import Component from "../refresh/component.js";
-import { isOpen, isValue } from "../dropdownStore.js";
+import { isOpen, isValue } from "../stores/dropdownStore.js";
 
 class Dropdown extends Component {
   constructor(selector) {
