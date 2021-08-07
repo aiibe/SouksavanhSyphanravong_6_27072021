@@ -239,6 +239,7 @@
   }
 
   &__like-icon {
+    cursor: pointer;
     height: 15px;
     fill: $color-primary;
     vertical-align: middle;
@@ -379,6 +380,8 @@
     min-height: 300px;
     width: 80vw;
     padding: 20px;
+    border-radius: 5px;
+    overflow: hidden;
 
     @include screen-above(mobile) {
       height: 60vh;
