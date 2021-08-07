@@ -362,9 +362,20 @@
     margin-top: 40px;
   }
 
+  &__title {
+    font-size: 14px;
+    font-weight: 400;
+    margin: 0;
+
+    @include screen-above(mobile) {
+      font-size: 24px;
+    }
+  }
+
   &__image {
     display: flex;
-    align-items: center;
+    flex-direction: column;
+    justify-content: center;
     min-height: 300px;
     width: 80vw;
     padding: 20px;
@@ -375,21 +386,31 @@
   }
 
   &__video {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    min-height: 300px;
+
     video {
-      min-height: 300px;
       width: 80vw;
-      padding: 20px;
 
       @include screen-above(mobile) {
         width: 60vw;
-        margin: 0 auto;
       }
+    }
+
+    @include screen-above(mobile) {
+      padding: 20px;
     }
   }
 
   &__arrow {
     width: 15px;
     cursor: pointer;
+
+    @include screen-above(mobile) {
+      width: 30px;
+    }
   }
 
   &__close {
@@ -401,6 +422,10 @@
 
     path {
       pointer-events: none;
+    }
+
+    @include screen-above(mobile) {
+      width: 30px;
     }
   }
 }

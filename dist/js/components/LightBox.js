@@ -39,7 +39,7 @@ class LightBox extends Component {
   }
 }
 
-function renderMedia({ image, desc, id, video }) {
+function renderMedia({ image, desc, id, video, title }) {
   return `
     <div class="lightbox__modal"> 
     <div class="lightbox__block">
@@ -48,28 +48,30 @@ function renderMedia({ image, desc, id, video }) {
     </svg>
     <div class="lightbox__body">
     ${renderArrowLeft(id)}
-    ${image ? renderImage(image, desc) : renderVideo(video, desc)}
+    ${image ? renderImage(image, desc, title) : renderVideo(video, desc, title)}
     ${renderArrowRight(id)}
     </div>
     </div>
   `;
 }
 
-function renderVideo(video, desc) {
+function renderVideo(video, desc, title) {
   const src = `../images/gallery/raw/${video}`;
   return `
     <div class="lightbox__video">
       <video autoplay>
       <source src="${src}" type="video/mp4 ">
       </video>
+      <h1 class="lightbox__title">${title}</h1>
     </div>
   `;
 }
 
-function renderImage(image, desc) {
+function renderImage(image, desc, title) {
   return `
   <div class="lightbox__image">
     <img src="../images/gallery/raw/${image}" alt="${desc}">
+    <h1 class="lightbox__title">${title}</h1>
   </div>
   `;
 }
