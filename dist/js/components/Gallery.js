@@ -1,10 +1,50 @@
 import mediaStore from "../mediaStore.js";
 import { isValue } from "../dropdownStore.js";
+import lightboxStore from "../lightboxStore.js";
 import Component from "../refresh/component.js";
 
 class Gallery extends Component {
   constructor(selector) {
     super(selector);
+  }
+
+  delegateEvent() {
+    this.selector.addEventListener("click", (event) => {
+      const classes = event.target.classList;
+      const contained =
+        classes.contains("gallery__image") ||
+        classes.contains("gallery__video");
+
+      if (contained) {
+        event.preventDefault();
+
+        const { media } = mediaStore.get();
+        const { currentFilter } = isValue.get();
+        const id = this.selector.dataset.author;
+        const mediaId = event.target.dataset.id;
+        let authorMedia = media.filter(
+          ({ photographerId }) => photographerId == id
+        );
+        if (currentFilter === "POPULAR") {
+          authorMedia = authorMedia.sort((a, b) => b.likes - a.likes);
+        }
+        if (currentFilter === "DATE") {
+          authorMedia = authorMedia.sort(
+            (a, b) => new Date(a.date) - new Date(b.date)
+          );
+        }
+
+        if (currentFilter === "TITLE") {
+          authorMedia = authorMedia.sort((a, b) =>
+            a.title.localeCompare(b.title)
+          );
+        }
+
+        lightboxStore.set("media", authorMedia);
+        lightboxStore.set("show", true);
+        lightboxStore.set("currentIndex", parseInt(mediaId));
+      }
+    });
   }
 
   render() {
@@ -46,26 +86,26 @@ function renderMeta({ title, likes }) {
   `;
 }
 
-function renderImage(image) {
+function renderImage(image, desc, id) {
   return `
-  <img class="gallery__image" src="../images/gallery/min/${image}" />
+  <img class="gallery__image" data-id="${id}" src="../images/gallery/min/${image}" alt="${desc}"/>
 `;
 }
 
-function renderVideo(video) {
+function renderVideo(video, desc, id) {
   return `
-  <video class="gallery__video">
+  <video class="gallery__video" data-id="${id}">
     <source src="../images/gallery/raw/${video}" type="video/mp4">
   </video>
 `;
 }
 
-function renderMedia({ image, video, title, likes }) {
+function renderMedia({ image, video, title, likes, desc, id }) {
   return `
   <article class='gallery__cell'>
-  <div class="gallery__media">
-  ${image ? renderImage(image) : renderVideo(video)}
-  </div>
+  <a href="" class="gallery__media">
+  ${image ? renderImage(image, desc, id) : renderVideo(video, desc, id)}
+  </a>
   ${renderMeta({ title, likes })}
   </article>
   `;

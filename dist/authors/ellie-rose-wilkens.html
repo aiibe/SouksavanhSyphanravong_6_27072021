@@ -11,8 +11,11 @@
   <script src="../js/refresh/component.js" type="module" defer async></script>
   <script src="../js/refresh/store.js" type="module" defer async></script>
   <script src="../js/components/Dropdown.js" type="module" defer async></script>
+  <script src="../js/components/Contact.js" type="module" defer async></script>
+  <script src="../js/components/LightBox.js" type="module" defer async></script>
   <script src="../js/dropdownStore.js" type="module" defer async></script>
   <script src="../js/mediaStore.js" type="module" defer async></script>
+  <script src="../js/lightboxStore.js" type="module" defer async></script>
   <script src="../js/author.js" type="module" defer async></script>
 </head>
 
@@ -61,7 +64,7 @@
             </ul>
           </div>
           <div class="profile__portrait">
-            <img src="../images/authors/EllieRoseWilkens.jpg" alt="">
+            <img src="../images/authors/EllieRoseWilkens.jpg" alt="Ellie-Rose Wilkens">
           </div>
         </div>
       </section>
@@ -69,12 +72,17 @@
         <div class="gallery__filter">
           <span>Trier par</span>
           <div class="gallery__filter-box">
-            <ul class="gallery__filter-options" tabindex="-1" role="listbox"></ul>
+            <ul class="gallery__filter-options" tabindex="-1" role="listbox" aria-haspopup="listbox"></ul>
           </div>
         </div>
         <div class="grid gallery__grid" data-author=930></div>
       </section>
     </main>
+    <footer>
+      <div class="contact" data-author="Ellie-Rose Wilkens">
+      </div>
+      <div class="lightbox"></div>
+    </footer>
   </div>
 </body>
 

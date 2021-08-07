@@ -85,7 +85,7 @@
 
     &__block {
       background-color: #fafafa;
-      padding: 20px;
+      padding: 30px 50px;
     }
 
     &__misc {
@@ -119,6 +119,24 @@
       font-size: 20px;
       transform: none;
       margin-left: 100px;
+    }
+
+    &__portrait {
+      width: 200px;
+      height: 200px;
+    }
+
+    &__name {
+      font-size: 64px;
+    }
+
+    &__location {
+      font-size: 24px;
+      margin-bottom: 20px;
+    }
+
+    &__tagline {
+      font-size: 18px;
     }
   }
 }
@@ -193,6 +211,7 @@
     border-radius: 5px;
     overflow: hidden;
     margin-bottom: 10px;
+    display: block;
   }
 
   &__video {
@@ -234,6 +253,154 @@
     &__filter {
       display: flex;
       align-items: center;
+    }
+  }
+}
+
+.contact {
+  &__modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4);
+  }
+
+  &__block {
+    background-color: #db8876;
+    padding: 20px;
+    border-radius: 5px;
+    max-width: 375px;
+    margin: 0 auto;
+    margin-top: 40px;
+
+    @include screen-above(mobile) {
+      margin-top: 80px;
+    }
+  }
+
+  &__head {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__name {
+    margin-top: 0;
+  }
+
+  &__close {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+
+    path {
+      pointer-events: none;
+    }
+  }
+
+  &__form {
+    display: flex;
+    flex-direction: column;
+
+    label {
+      font-weight: 400;
+      font-size: 24px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      font-weight: 400;
+      font-size: 18px;
+      border-radius: 5px;
+      border: 0;
+      padding: 5px 10px;
+      margin-bottom: 10px;
+    }
+  }
+
+  &__form-submit {
+    background-color: $color-primary;
+    border: 0;
+    color: white;
+    border-radius: 5px;
+    padding: 5px 10px;
+    font-size: 18px;
+    font-weight: 700;
+    cursor: pointer;
+  }
+}
+
+.lightbox {
+  &__modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 999;
+    width: 100%;
+    height: 100%;
+    background-color: white;
+  }
+
+  &__block {
+    position: relative;
+    width: 375px;
+    margin: 0 auto;
+
+    @include screen-above(mobile) {
+      width: 70vw;
+    }
+  }
+
+  &__body {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 20px;
+    margin-top: 40px;
+  }
+
+  &__image {
+    display: flex;
+    align-items: center;
+    min-height: 300px;
+    width: 80vw;
+    padding: 20px;
+
+    @include screen-above(mobile) {
+      height: 60vh;
+    }
+  }
+
+  &__video {
+    video {
+      min-height: 300px;
+      width: 80vw;
+      padding: 20px;
+
+      @include screen-above(mobile) {
+        width: 60vw;
+        margin: 0 auto;
+      }
+    }
+  }
+
+  &__arrow {
+    width: 15px;
+    cursor: pointer;
+  }
+
+  &__close {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    width: 15px;
+    cursor: pointer;
+
+    path {
+      pointer-events: none;
     }
   }
 }

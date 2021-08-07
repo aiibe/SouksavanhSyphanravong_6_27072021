@@ -22,3 +22,9 @@ img {
   object-fit: cover;
   display: block;
 }
+
+svg {
+  path {
+    pointer-events: none;
+  }
+}
