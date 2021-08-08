@@ -1,6 +1,9 @@
+// Stores
+import store from "./stores/tagStore.js";
+
+// Components
 import NavTags from "./components/NavTags.js";
 import AuthorList from "./components/AuthorList.js";
-import store from "./stores/tagStore.js";
 
 // Initialize components
 const filter = new NavTags(".nav__tags");

@@ -2,6 +2,10 @@ import Component from "../refresh/component.js";
 import { bindClick } from "../helpers.js";
 import store from "../stores/tagStore.js";
 
+/**
+ * Tags in navbar component
+ * @extends Component
+ */
 class NavTags extends Component {
   constructor(selector) {
     super(selector);
@@ -17,6 +21,11 @@ class NavTags extends Component {
   }
 }
 
+/**
+ * Render tag in navbar
+ * @param {string} self Tag
+ * @returns template literals
+ */
 function renderNavTag(self) {
   const { activeTags } = store.get();
   return `

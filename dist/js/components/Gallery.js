@@ -3,18 +3,27 @@ import { isValue } from "../stores/dropdownStore.js";
 import lightboxStore from "../stores/lightboxStore.js";
 import Component from "../refresh/component.js";
 
+/**
+ * Gallery component for each photographer
+ * @extends Component
+ */
 class Gallery extends Component {
   constructor(selector) {
     super(selector);
   }
 
+  // Event delegation
   delegateEvent() {
+    /**
+     * Listen for clicks from parent DOM element
+     */
     this.selector.addEventListener("click", (event) => {
       const classes = event.target.classList;
       const contained =
         classes.contains("gallery__image") ||
         classes.contains("gallery__video");
 
+      // Catch clicks from media articles
       if (contained) {
         event.preventDefault();
 
@@ -25,6 +34,10 @@ class Gallery extends Component {
         let authorMedia = media.filter(
           ({ photographerId }) => photographerId == id
         );
+
+        /**
+         * Filter media for lightbox store
+         */
         if (currentFilter === "POPULAR") {
           authorMedia = authorMedia.sort((a, b) => b.likes - a.likes);
         }
@@ -40,22 +53,28 @@ class Gallery extends Component {
           );
         }
 
+        /**
+         * Update our lightbox store
+         * (NOTICE: TODO Implement a bulk update method )
+         */
         lightboxStore.set("media", authorMedia);
         lightboxStore.set("show", true);
         lightboxStore.set("currentIndex", parseInt(mediaId));
         return;
       }
 
+      // Catch clicks from user likes
       if (event.target.classList.contains("gallery__likes")) {
         event.preventDefault();
         const id = parseInt(event.target.dataset.id);
         const likes = parseInt(event.target.dataset.likes);
+
+        /**
+         * Increment likes and update our media store
+         */
         mediaStore.update("media", (old) => {
           return old.map((o) => {
-            if (o.id === id) {
-              o.likes = likes + 1;
-            }
-
+            if (o.id === id) o.likes = likes + 1;
             return o;
           });
         });
@@ -71,6 +90,9 @@ class Gallery extends Component {
       ({ photographerId }) => photographerId == id
     );
 
+    /**
+     * Sort and render media by currentFilter
+     */
     switch (currentFilter) {
       case "POPULAR":
         return authorMedia
@@ -90,6 +112,12 @@ class Gallery extends Component {
   }
 }
 
+/**
+ * Render media meta info
+ * (dumb component)
+ * @param {Object} media
+ * @returns {string} template literals
+ */
 function renderMeta({ title, likes, id }) {
   return `
   <div class="gallery__meta">
@@ -101,12 +129,26 @@ function renderMeta({ title, likes, id }) {
   `;
 }
 
+/**
+ * Render media image
+ * @param {string} image Link to media image
+ * @param {string} desc Description of media
+ * @param {string || number} id media id
+ * @returns template literals
+ */
 function renderImage(image, desc, id) {
   return `
   <img class="gallery__image" data-id="${id}" src="../images/gallery/min/${image}" alt="${desc}"/>
 `;
 }
 
+/**
+ * Render media video
+ * @param {string} video Link to media video
+ * @param {string} desc Description of media
+ * @param {string || number} id media id
+ * @returns template literals
+ */
 function renderVideo(video, desc, id) {
   return `
   <video class="gallery__video" data-id="${id}">
@@ -115,6 +157,11 @@ function renderVideo(video, desc, id) {
 `;
 }
 
+/**
+ * Render media
+ * @param {Object} param0 Media object
+ * @returns template literals
+ */
 function renderMedia({ image, video, title, likes, desc, id }) {
   return `
   <article class='gallery__cell'>

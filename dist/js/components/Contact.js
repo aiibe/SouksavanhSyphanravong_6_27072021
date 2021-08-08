@@ -1,22 +1,31 @@
 import Component from "../refresh/component.js";
 import modalStore from "../stores/modalStore.js";
 
+/**
+ * Modal contact component
+ * @extends Component
+ */
 class Contact extends Component {
   constructor(selector) {
     super(selector);
   }
 
   delegateEvent() {
+    //Listen for click events
     this.selector.addEventListener("click", (event) => {
+      // Catch click on close modal button
       if (event.target.classList.contains("contact__close")) {
         event.preventDefault();
         return modalStore.set("show", false);
       }
     });
 
+    // Listen for form submit event
     this.selector.addEventListener("submit", (event) => {
       event.preventDefault();
       const form = event.target;
+
+      // Filter form values and yield in console log
       const fields = [...form.elements].filter((f) => f.type !== "submit");
       fields.forEach((field) => console.log(field.value));
     });
@@ -25,10 +34,15 @@ class Contact extends Component {
   render() {
     const name = this.selector.dataset.author;
     const { show } = modalStore.get();
-    return show ? [renderForm(name)] : [];
+    return show && [renderForm(name)];
   }
 }
 
+/**
+ * Render contact form
+ * @param {string} name Photograph's name
+ * @returns template literals
+ */
 function renderForm(name) {
   return `
   <div class="contact__modal">

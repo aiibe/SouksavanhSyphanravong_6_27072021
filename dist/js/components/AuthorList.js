@@ -2,6 +2,10 @@ import Component from "../refresh/component.js";
 import { bindClick, slug } from "../helpers.js";
 import store from "../stores/tagStore.js";
 
+/**
+ * All photographers component
+ * @extends Component
+ */
 class AuthorList extends Component {
   constructor(selector) {
     super(selector);
@@ -13,16 +17,24 @@ class AuthorList extends Component {
 
   render() {
     const { activeTags, photographers } = store.get();
+
+    // Display all photographers by default
     if (activeTags.length === 0) {
       return photographers.map((author) => renderAuthor(author));
     }
 
+    // Display photographers filtered by tags
     return photographers
       .filter((author) => author.tags.some((tag) => activeTags.includes(tag)))
       .map((author) => renderAuthor(author));
   }
 }
 
+/**
+ * Render photographer
+ * @param {Object} author Photograph info
+ * @returns template lierals
+ */
 function renderAuthor(author) {
   const { name, portrait, city, country, tagline, price, tags } = author;
   return `
@@ -49,6 +61,11 @@ function renderAuthor(author) {
 `;
 }
 
+/**
+ * Render a tag
+ * @param {string} self Tag
+ * @returns template literals
+ */
 function renderTag(self) {
   const { activeTags } = store.get();
   return `

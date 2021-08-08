@@ -1,18 +1,25 @@
 import Component from "../refresh/component.js";
 import lightboxStore from "../stores/lightboxStore.js";
 
+/**
+ * Modal lightbox component
+ * @extends Component
+ */
 class LightBox extends Component {
   constructor(selector) {
     super(selector);
   }
 
   delegateEvent() {
+    // Listen for click events
     this.selector.addEventListener("click", (event) => {
+      // Catch click to close lightbox modal
       if (event.target.classList.contains("lightbox__close")) {
         event.preventDefault();
         lightboxStore.set("show", false);
       }
 
+      // Catch click to render next media from lightbox store
       if (event.target.classList.contains("lightbox__right")) {
         event.preventDefault();
         const { media, currentIndex } = lightboxStore.get();
@@ -21,6 +28,7 @@ class LightBox extends Component {
         if (nextMediaId) return lightboxStore.set("currentIndex", nextMediaId);
       }
 
+      // Catch click to render previous media from lightbox store
       if (event.target.classList.contains("lightbox__left")) {
         event.preventDefault();
         const { media, currentIndex } = lightboxStore.get();
@@ -39,6 +47,11 @@ class LightBox extends Component {
   }
 }
 
+/**
+ * Render current media
+ * @param {Object} param0 media
+ * @returns template literals
+ */
 function renderMedia({ image, desc, id, video, title }) {
   return `
     <div class="lightbox__modal"> 
@@ -48,14 +61,20 @@ function renderMedia({ image, desc, id, video, title }) {
     </svg>
     <div class="lightbox__body">
     ${renderArrowLeft(id)}
-    ${image ? renderImage(image, desc, title) : renderVideo(video, desc, title)}
+    ${image ? renderImage(image, desc, title) : renderVideo(video, title)}
     ${renderArrowRight(id)}
     </div>
     </div>
   `;
 }
 
-function renderVideo(video, desc, title) {
+/**
+ * Render video
+ * @param {string} video Link to video
+ * @param {string} title Media title
+ * @returns template literals
+ */
+function renderVideo(video, title) {
   const src = `../images/gallery/raw/${video}`;
   return `
     <div class="lightbox__video">
@@ -67,6 +86,13 @@ function renderVideo(video, desc, title) {
   `;
 }
 
+/**
+ * Render image
+ * @param {string} image Link to image
+ * @param {string} desc Media description
+ * @param {string} title Media title
+ * @returns template literals
+ */
 function renderImage(image, desc, title) {
   return `
   <div class="lightbox__image">
@@ -76,6 +102,12 @@ function renderImage(image, desc, title) {
   `;
 }
 
+/**
+ * Render arrow left if current media is not the first item
+ * Otherwise return empty string
+ * @param {number} id Media id
+ * @returns template literals
+ */
 function renderArrowLeft(id) {
   const { media } = lightboxStore.get();
   const current = media.findIndex((m) => m.id === id);
@@ -89,6 +121,12 @@ function renderArrowLeft(id) {
   return ``;
 }
 
+/**
+ * Render arrow right if current media is not the last item
+ * Otherwise return empty string
+ * @param {number} id Media id
+ * @returns template literals
+ */
 function renderArrowRight(id) {
   const { media } = lightboxStore.get();
   const current = media.findIndex((m) => m.id === id);
