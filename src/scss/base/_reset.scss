@@ -28,3 +28,34 @@ svg {
     pointer-events: none;
   }
 }
+
+button {
+  background-color: $color-primary;
+  cursor: pointer;
+  color: white;
+
+  &:hover,
+  &:focus {
+    background-color: #db8876;
+    color: initial;
+  }
+}
+
+button,
+select,
+div,
+a {
+  &:focus-visible {
+    outline-style: solid;
+    outline-width: 5px;
+    outline-offset: 2px;
+    outline-color: royalblue;
+    animation: zoomfocus 500ms ease;
+  }
+}
+
+@keyframes zoomfocus {
+  from {
+    outline-offset: 10px;
+  }
+}

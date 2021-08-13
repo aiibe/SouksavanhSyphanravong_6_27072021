@@ -21,4 +21,11 @@
     border-color: transparent;
     color: white;
   }
+
+  &__sr {
+    display: block;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+  }
 }
