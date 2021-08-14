@@ -2,7 +2,6 @@ import PageFactory from "./PageFactory";
 
 /**
  * A router object with change medhod
- * Decides 
  */
 class Router {
   constructor(selector) {
