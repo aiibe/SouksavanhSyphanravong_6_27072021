@@ -1,5 +1,8 @@
 import MediaBox from "./MediaBox";
 
+/**
+ * Image component
+ */
 class ImageBox extends MediaBox {
   constructor(media) {
     super(media);

@@ -1,6 +1,9 @@
 import Markup from "../refresh/markup";
 import router from "../router";
 
+/**
+ * Display tags on nav bar
+ */
 class NavTags extends Markup {
   constructor(selector) {
     super(selector);
@@ -62,6 +65,9 @@ class NavTags extends Markup {
       "Events",
     ];
 
+    /**
+     * Get active tags from searchParams
+     */
     let activeTags = [];
     const { searchParams } = router.url;
     if (searchParams.has("tags")) {

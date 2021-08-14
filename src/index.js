@@ -1,9 +1,8 @@
 // Styling
 import "./scss/main.scss";
 
-// Stores
-import dataStore from "./stores/dataStore";
-
 // Router
 import router from "./router";
+
+// Launch app with router
 router.run();

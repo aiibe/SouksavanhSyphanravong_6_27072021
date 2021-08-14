@@ -40,6 +40,9 @@ class Contact extends Component {
     });
   }
 
+  /**
+   * Close the modal and unfocus
+   */
   closeModal() {
     this.selector.removeAttribute("tabindex");
     this.selector.blur();
@@ -51,8 +54,11 @@ class Contact extends Component {
     const { show } = contactStore.get();
 
     if (show) {
-      this.selector.setAttribute("tabindex", 1);
+      // Set focus
+      this.selector.setAttribute("tabindex", 0);
       this.selector.focus();
+
+      // Markup
       return [renderForm(author.name)];
     }
   }
@@ -69,7 +75,7 @@ function renderForm(name) {
     <div class="contact__block">
       <div class="contact__head">
         <h1 id="contact_id" class="contact__name">Contactez-moi ${name}</h1>
-        <svg class="contact__close" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+        <svg tabindex="1" class="contact__close" viewBox="0 0 42 42" fill="none" xmlns="http://www.w3.org/2000/svg">
           <path d="M42 4.23L37.77 0L21 16.77L4.23 0L0 4.23L16.77 21L0 37.77L4.23 42L21 25.23L37.77 42L42 37.77L25.23 21L42 4.23Z" fill="white"/>
         </svg>
       </div>

@@ -3,6 +3,9 @@ import authorStore from "../stores/authorStore";
 import lightboxStore from "../stores/lightboxStore";
 import MediaFactory from "./media/MediaFactory";
 
+/**
+ * Display lightbox with media
+ */
 class LightBox extends Component {
   constructor(selector) {
     super(selector);
@@ -47,12 +50,18 @@ class LightBox extends Component {
     });
   }
 
+  /**
+   * Close lightbox
+   */
   closeLightbox() {
     lightboxStore.set(() => ({ mediaId: null, show: false }));
     this.selector.removeAttribute("tabindex");
     this.selector.blur();
   }
 
+  /**
+   * Go to previous media
+   */
   previousMedia() {
     const { media } = authorStore.get();
     let { currentIndex } = lightboxStore.get();
@@ -67,6 +76,9 @@ class LightBox extends Component {
     lightboxStore.set((x) => ({ ...x, currentIndex }));
   }
 
+  /**
+   * Go to next media
+   */
   nextMedia() {
     const { media } = authorStore.get();
     let { currentIndex } = lightboxStore.get();
@@ -84,7 +96,7 @@ class LightBox extends Component {
 
     if (show) {
       // Set focus on lightbox to capture keydown events
-      this.selector.setAttribute("tabindex", 1);
+      this.selector.setAttribute("tabindex", 0);
       this.selector.focus();
 
       // Create and render media

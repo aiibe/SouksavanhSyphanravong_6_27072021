@@ -1,20 +1,29 @@
 import Markup from "../refresh/markup";
 import router from "../router";
+
 import AuthorInfo from "../components/AuthorInfo";
 import Gallery from "../components/Gallery";
+import LightBox from "../components/LightBox";
+import Contact from "../components/Contact";
+
 import authorStore from "../stores/authorStore";
 import sortStore from "../stores/sortStore";
-import Contact from "../components/Contact";
 import contactStore from "../stores/contactStore";
-import LightBox from "../components/LightBox";
 import lightboxStore from "../stores/lightboxStore";
 
+/**
+ * Display profile page
+ */
 class Profile extends Markup {
   constructor(selector) {
     super(selector);
     this.hydrate();
   }
 
+  /**
+   * Load from fisheyData.json
+   * and hydrate our app
+   */
   hydrate() {
     // Load data and hydrate authorStore
     const { author } = authorStore.get();
@@ -23,6 +32,8 @@ class Profile extends Markup {
         .then((res) => res.json())
         .then((data) => {
           const { searchParams } = router.url;
+
+          // Find photographer's media by id from searchParams 
           if (searchParams.has("id")) {
             const paramId = parseInt(searchParams.get("id"));
             const currentAuthor = data.photographers.find(
@@ -80,7 +91,7 @@ class Profile extends Markup {
   }
 
   after() {
-    // Initiate our components
+    // Initiate our reactive components
     const authorInfo = new AuthorInfo(".profile");
     const gallery = new Gallery(".gallery__grid");
     const contact = new Contact(".contact");

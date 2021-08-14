@@ -1,5 +1,8 @@
 import MediaBox from "./MediaBox";
 
+/**
+ * Video component
+ */
 class VideoBox extends MediaBox {
   constructor(media) {
     super(media);

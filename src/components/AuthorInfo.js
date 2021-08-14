@@ -2,6 +2,9 @@ import Component from "../refresh/component";
 import authorStore from "../stores/authorStore";
 import contactStore from "../stores/contactStore";
 
+/**
+ * Display photographer profile
+ */
 class AuthorInfo extends Component {
   constructor(selector) {
     super(selector);
@@ -10,16 +13,18 @@ class AuthorInfo extends Component {
   delegateEvent() {
     // Listen for clicks
     this.selector.addEventListener("click", (event) => {
-      // Catch click on contact button
+      /**
+       * Open contact modal
+       */
       if (event.target.classList.contains("profile__contact")) {
         event.preventDefault();
-        contactStore.set((x) => ({ show: true }));
+        contactStore.set(() => ({ show: true }));
       }
     });
   }
 
   render() {
-    const { author } = authorStore.get();
+    const { author, media } = authorStore.get();
     if (author) {
       const { name, id, price, tagline, country, city, portrait, tags } =
         author;
@@ -31,7 +36,10 @@ class AuthorInfo extends Component {
           <div class="profile__author">
             <h1 class="profile__name">${name}</h1>
             <div class="profile__misc">
-              ${this.renderLikes({ price, id })}
+              ${this.renderLikes({ media, price })}
+              <span class="profile__price">
+                ${price}€ / jour
+              </span>
             </div>
             <button class="profile__contact">Contactez-moi</button>
           </div>
@@ -62,23 +70,15 @@ class AuthorInfo extends Component {
     </li>`;
   }
 
-  renderLikes({ price, id }) {
+  
+  renderLikes({ media }) {
     // Sum of photographer likes
-    const { media } = authorStore.get();
-    const count = media
-      .filter(({ photographerId }) => photographerId === id)
-      .reduce((t, m) => {
-        t += parseInt(m.likes);
-        return t;
-      }, 0);
+    const count = media.reduce((t, m) => (t += parseInt(m.likes)), 0);
 
     return `
       <span class="profile__total-likes">
-          ${count}
-        </span>
-        <span class="profile__price">
-          ${price}€ / jour
-        </span>
+        ${count}
+      </span>
     `;
   }
 }

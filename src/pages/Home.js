@@ -3,12 +3,19 @@ import NavTags from "../components/NavTags";
 import AuthorList from "../components/AuthorList";
 import dataStore from "../stores/dataStore";
 
+/**
+ * Display index/home page markup
+ */
 class Home extends Markup {
   constructor(selector) {
     super(selector);
     this.hydrate();
   }
 
+  /**
+   * Load data from fisheyeData.json
+   * and hydrate our app
+   */
   hydrate() {
     // Load data and hydrate dataStore
     const { photographers } = dataStore.get();
@@ -44,18 +51,21 @@ class Home extends Markup {
     `;
   }
 
+  // After component rendered
   after() {
     // Append NavTags component
     new NavTags(".nav__tags");
 
     // Append AuthorList component
     const authorList = new AuthorList(".authors__list");
+    // Make authorList component reactive when data changes
     dataStore.subscribe(authorList);
 
-    // Scroll to top
+    // Cache scroll to top elements
     const scroller = document.querySelector(".scroller");
     const scrollerButton = document.querySelector(".scroller__text");
 
+    // Show/hide button on scroll
     window.onscroll = () => {
       let top = document.documentElement.scrollTop;
       if (top === 0) return (scroller.style.display = "none");
@@ -63,6 +73,7 @@ class Home extends Markup {
         return (scroller.style.display = "block");
     };
 
+    // Animate scroll back to top page
     scrollerButton.addEventListener("click", (event) => {
       event.preventDefault();
       const href = event.target.getAttribute("href");

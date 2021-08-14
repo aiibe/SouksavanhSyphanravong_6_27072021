@@ -3,6 +3,9 @@ import authorStore from "../stores/authorStore";
 import lightboxStore from "../stores/lightboxStore";
 import sortStore from "../stores/sortStore";
 
+/**
+ * Display gallery of media
+ */
 class Gallery extends Component {
   constructor(selector) {
     super(selector);
@@ -17,17 +20,17 @@ class Gallery extends Component {
       if (event.target.classList.contains("gallery__likes")) {
         const id = parseInt(event.target.dataset.id);
 
-        // Update authStore
+        // Increment total likes and update store
         authorStore.set((x) => ({
           ...x,
           media: x.media.map((m) => {
-            if (m.id === id) ++m.likes; // increment total likes
+            if (m.id === id) ++m.likes;
             return m;
           }),
         }));
       }
 
-      // Catch clicks on article
+      // Open lightbox with this current medis
       const parent = event.target.closest(".gallery__media");
       if (parent) {
         event.preventDefault();
@@ -38,7 +41,7 @@ class Gallery extends Component {
 
     // Keyboard listener
     this.selector.addEventListener("keypress", (event) => {
-      // Catch Enter key
+      // Catch Enter key and open lightbox
       if (event.key === "Enter") {
         if (event.target.classList.contains("gallery__media")) {
           event.preventDefault();
@@ -49,6 +52,10 @@ class Gallery extends Component {
     });
   }
 
+  /**
+   * Find media and update lighboxStore
+   * @param {number} id media ID
+   */
   openModal(id) {
     const { media } = authorStore.get();
     const currentIndex = media.findIndex((m) => m.id === id);

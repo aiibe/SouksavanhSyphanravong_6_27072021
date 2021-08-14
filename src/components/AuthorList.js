@@ -3,7 +3,7 @@ import router from "../router";
 import dataStore from "../stores/dataStore";
 
 /**
- * All photographers component
+ * Display photographers profiles
  * @extends Component
  */
 class AuthorList extends Component {
@@ -12,7 +12,11 @@ class AuthorList extends Component {
   }
 
   delegateEvent() {
+    // Listen for click events
     this.selector.addEventListener("click", (event) => {
+      /**
+       * Update selected tag to searchParams
+       */
       if (event.target.classList.contains("tag")) {
         event.preventDefault();
         const { tagname } = event.target.dataset;
@@ -40,6 +44,7 @@ class AuthorList extends Component {
   render() {
     const { photographers } = dataStore.get();
 
+    // Get active tags from searchParams
     let activeTags = [];
     const { searchParams } = router.url;
     if (searchParams.has("tags")) {
