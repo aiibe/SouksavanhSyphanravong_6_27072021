@@ -17,4 +17,4 @@ npm run build
 ```
 
 ## Live demo
-https://aiibe.github.io/SouksavanhSyphanravong_6_27072021/
+https://fisheye-souk.vercel.app/
