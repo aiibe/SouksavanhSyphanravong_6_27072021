@@ -8,7 +8,7 @@ class Router {
   constructor(selector) {
     this.selector = document.querySelector(selector); // Set root app
     this.url = new URL(window.location); // Set current 
-    this.pageFactory = new PageFactory('/SouksavanhSyphanravong_6_27072021')
+    this.pageFactory = new PageFactory()
   }
 
   run() {
